@@ -247,7 +247,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
   
   <!-- SEO & Meta Tags Utama -->
   <title id="metaTitle">${config.SCHOOL_NAME || "Portal Digital Sekolah"} - Launcher Terpadu</title>
-  <meta name="description" content="Selamat datang di Portal Digital & Website Resmi SMP AL-HIKAM. Pusat layanan akademik, administrasi, dan informasi digital terintegrasi untuk guru, siswa, dan wali murid.">
+  <meta name="description" content="Selamat datang di Portal Digital & Website Resmi AL-HIKAM SCHOOL. Pusat layanan akademik, administrasi, dan informasi digital terintegrasi untuk guru, siswa, dan wali murid.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://sekolahkita.sch.id">
   <meta name="theme-color" content="#f0f4f9">
@@ -255,14 +255,14 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="SMP AL-HIKAM - Portal Digital & Website Resmi">
-  <meta property="og:description" content="Pusat layanan akademik, administrasi, dan informasi digital terintegrasi SMP AL-HIKAM Sidoarjo.">
+  <meta property="og:title" content="AL-HIKAM SCHOOL - Portal Digital & Website Resmi">
+  <meta property="og:description" content="Pusat layanan akademik, administrasi, dan informasi digital terintegrasi AL-HIKAM SCHOOL.">
   <meta property="og:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1200">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="SMP AL-HIKAM - Portal Digital & Website Resmi">
-  <meta property="twitter:description" content="Pusat layanan akademik, administrasi, dan informasi digital terintegrasi SMP AL-HIKAM Sidoarjo.">
+  <meta property="twitter:title" content="AL-HIKAM SCHOOL - Portal Digital & Website Resmi">
+  <meta property="twitter:description" content="Pusat layanan akademik, administrasi, dan informasi digital terintegrasi AL-HIKAM SCHOOL.">
   <meta property="twitter:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1200">
 
   <!-- JSON-LD Schema.org Structured Data -->
@@ -270,17 +270,17 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
   {
     "@context": "https://schema.org",
     "@type": "School",
-    "name": "SMP AL-HIKAM Sidoarjo",
+    "name": "AL-HIKAM SCHOOL",
     "url": "https://sekolahkita.sch.id",
     "logo": "https://www.gstatic.com/images/branding/product/1x/scis_512dp.png",
     "image": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1200",
     "description": "Lembaga pendidikan menengah pertama unggulan yang mengintegrasikan seluruh sistem informasi akademik dan administrasi dalam satu platform digital.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Jl. Raya Candi No. 45, Kecamatan Candi",
-      "addressLocality": "Sidoarjo",
-      "addressRegion": "Jawa Timur",
-      "postalCode": "61271",
+      "streetAddress": "Jl. Raya Sendang Mulyo",
+      "addressLocality": "Sendang Mulyo",
+      "addressRegion": "Lampung Tengah",
+      "postalCode": "34174",
       "addressCountry": "ID"
     },
     "telephone": "(031) 892-1234",
@@ -344,7 +344,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
       <a href="#heroSection" class="logo-area" style="text-decoration: none; color: inherit;">
         <div id="schoolLogoCircle" class="logo-circle" aria-hidden="true">A</div>
         <div class="school-meta">
-          <div id="schoolNameHeader" class="school-name">SMP AL-HIKAM</div>
+          <div id="schoolNameHeader" class="school-name">AL-HIKAM SCHOOL</div>
           <span id="schoolSubtitleHeader" class="system-title">Portal Akademik & Layanan Digital</span>
         </div>
       </a>
@@ -385,10 +385,10 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
         <div class="hero-badge">
           <span class="material-symbols-rounded" style="font-size: 16px;">verified_user</span> Portal Resmi Terverifikasi
         </div>
-        <h1 id="welcome-heading" class="hero-title">SMP AL-HIKAM <br><span>Portal Digital Sekolah</span></h1>
+        <h1 id="welcome-heading" class="hero-title">AL-HIKAM SCHOOL<br><span>Portal Digital Sekolah</span></h1>
         
         <p class="hero-subtitle">
-          Selamat datang di platform integrasi digital SMP AL-HIKAM. Portal ini memudahkan guru, tenaga kependidikan, siswa, orang tua, dan masyarakat dalam mengakses berbagai layanan akademik, keuangan, dan administrasi sekolah secara cepat, aman, dan efisien dari mana saja.
+          Selamat datang di platform integrasi digital AL-HIKAM SCHOOL. Portal ini memudahkan guru, tenaga kependidikan, siswa, orang tua, dan masyarakat dalam mengakses berbagai layanan akademik, keuangan, dan administrasi sekolah secara cepat, aman, dan efisien dari mana saja.
         </p>
 
         <p class="hero-subtitle-sub">
@@ -611,7 +611,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
       <div class="container">
         <div class="section-title-wrapper text-center">
           <span class="section-badge">Profil Lembaga</span>
-          <h2 class="section-main-title">Mengenal SMP AL-HIKAM</h2>
+          <h2 class="section-main-title">Mengenal AL-HIKAM SCHOOL</h2>
           <p class="section-subtitle-text">Lembaga pendidikan unggulan berbasis teknologi dan pembentukan karakter mulia.</p>
         </div>
 
@@ -619,7 +619,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
           <div class="profil-main-card">
             <h3>Tentang Kami</h3>
             <div id="schoolAboutContent">
-              <p>SMP AL-HIKAM Sidoarjo adalah sekolah menengah pertama yang berdedikasi tinggi melahirkan generasi rabbani yang cerdas secara akademik, mantap dalam spiritual, dan tangkas dalam menguasai teknologi informasi di era digital.</p>
+              <p>AL-HIKAM SCHOOL adalah sekolah menengah yang berdedikasi tinggi melahirkan generasi yang cerdas secara akademik, mantap dalam spiritual, dan tangkas dalam menguasai teknologi informasi di era digital.</p>
               <p>Dengan menerapkan kurikulum nasional yang dipadukan dengan kurikulum kepesantrenan dan literasi digital, kami berkomitmen membentuk siswa yang tidak hanya unggul dalam prestasi intelektual namun juga memiliki karakter akhlakul karimah yang kokoh.</p>
             </div>
             
@@ -673,7 +673,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
           <div class="section-title-wrapper">
             <span class="section-badge">Dokumentasi</span>
             <h2 class="section-main-title">Galeri Kegiatan Sekolah</h2>
-            <p class="section-subtitle-text" style="margin-top:4px;">Dokumentasi momen-momen terbaik, fasilitas modern, dan aktivitas santri SMP AL-HIKAM.</p>
+            <p class="section-subtitle-text" style="margin-top:4px;">Dokumentasi momen-momen terbaik, fasilitas modern, dan aktivitas santri AL-HIKAM SCHOOL.</p>
           </div>
           <button id="addGalleryBtn" class="admin-add-section-btn text-xs" onclick="openGalleryModal()" style="display:none; padding: 6px 12px; border-radius: 8px;">
             <span class="material-symbols-rounded" style="font-size:14px;">add</span> Tambah Foto
@@ -726,7 +726,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
               <span class="material-symbols-rounded" style="color: #ef4444;">location_on</span>
               <div>
                 <strong>Alamat Sekolah</strong>
-                <span id="lokasiAddress">Jl. Raya Candi No. 45, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271</span>
+                <span id="lokasiAddress">Jl. Raya Sendang Mulyo, Kec. sendang Agung, Kab. Lampung tengah, Prov. Lampung</span>
               </div>
             </div>
 
@@ -756,15 +756,14 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
           </div>
 
           <div class="maps-iframe-container hover-lift">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.1235489812563!2d112.7123456!3d-7.456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e12345678901%3A0x1234567890abcdef!2sCandi%2C%20Sidoarjo%20Regency%2C%20East%20Java!5e0!3m2!1sid!2sid!4v1700000000000" 
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.133168858014!2d104.9009293749829!3d-5.241765794736102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e47374aa1d19079%3A0xc5cb4778e22edb04!2sSMP%20AL%20HIKAM%20SENDANG%20MULYO!5e0!3m2!1sid!2sid!4v1784486318512!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" 
               width="100%" 
               height="100%" 
               style="border:0;" 
               allowfullscreen="" 
               loading="lazy" 
               referrerpolicy="no-referrer-when-downgrade"
-              title="Peta Lokasi Kampus SMP AL-HIKAM Sidoarjo">
+              title="Peta Lokasi Kampus AL-HIKAM SCHOOL">
             </iframe>
           </div>
         </div>
@@ -782,16 +781,16 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
         <div class="footer-brand">
           <div class="footer-logo">
             <div id="footerLogoCircle" class="logo-circle" style="width: 38px; height: 38px; font-size: 20px; border-radius: 8px;" aria-hidden="true">A</div>
-            <span id="footerSchoolName" class="footer-logo-text">SMP AL-HIKAM</span>
+            <span id="footerSchoolName" class="footer-logo-text"> AL-HIKAM SCHOOL</span>
           </div>
           <p class="footer-desc">
-            Sistem portal digital resmi SMP AL-HIKAM Sidoarjo. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.
+            Sistem portal digital resmi AL-HIKAM SCHOOL. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.
           </p>
           
           <div class="footer-legal-links">
-            <a href="#" onclick="alert('Kebijakan Privasi Portal SMP AL-HIKAM: Seluruh data yang disimpan melalui PropertiesService dienkripsi dan hanya diakses oleh administrator resmi sekolah.')">Privacy Policy</a>
+            <a href="#" onclick="alert('Kebijakan Privasi Portal AL-HIKAM SCHOOL: Seluruh data yang disimpan melalui PropertiesService dienkripsi dan hanya diakses oleh administrator resmi sekolah.')">Privacy Policy</a>
             <span class="divider">•</span>
-            <a href="#" onclick="alert('Syarat & Ketentuan Penggunaan: Layanan portal ini disediakan khusus untuk penunjang akademik civitas akademika SMP AL-HIKAM.')">Terms of Service</a>
+            <a href="#" onclick="alert('Syarat & Ketentuan Penggunaan: Layanan portal ini disediakan khusus untuk penunjang akademik civitas akademika AL-HIKAM SCHOOL.')">Terms of Service</a>
           </div>
         </div>
 
@@ -801,7 +800,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
           <ul class="footer-menu">
             <li><a href="#heroSection" onclick="smoothScroll(event, 'heroSection')">Halaman Depan</a></li>
             <li><a href="#appsSection" onclick="smoothScroll(event, 'appsSection')">Dashboard Aplikasi</a></li>
-            <li><a href="#profilSection" onclick="smoothScroll(event, 'profilSection')">Profil SMP AL-HIKAM</a></li>
+            <li><a href="#profilSection" onclick="smoothScroll(event, 'profilSection')">Profil AL-HIKAM SCHOOL</a></li>
             <li><a href="#beritaSection" onclick="smoothScroll(event, 'beritaSection')">Berita & Kegiatan</a></li>
             <li><a href="#faqSection" onclick="smoothScroll(event, 'faqSection')">Pertanyaan (FAQ)</a></li>
             <li><a href="#lokasiSection" onclick="smoothScroll(event, 'lokasiSection')">Alamat & Lokasi</a></li>
@@ -814,7 +813,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
             <h4 class="footer-title">Hubungi Kami</h4>
             <div class="contact-item">
               <span class="material-symbols-rounded">location_on</span>
-              <span id="footerAddress">Jl. Raya Candi No. 45, Candi, Sidoarjo, Jawa Timur 61271</span>
+              <span id="footerAddress">Jl. Raya Sendang Mulyo, Kec. sendang Agung, Kab. Lampung tengah, Prov. Lampung</span>
             </div>
             <div class="contact-item">
               <span class="material-symbols-rounded">call</span>
@@ -832,7 +831,7 @@ export function getIndexHtmlTemplate(config: ExtendedAppConfig): string {
       <!-- Baris Bawah: Hak Cipta & Info Teknis -->
       <div class="footer-bottom">
         <div id="footerCopyright">
-          &copy; 2026 SMP AL-HIKAM Sidoarjo. Hak Cipta Dilindungi Undang-Undang.
+          &copy; 2026 AL-HIKAM SCHOOL. Hak Cipta Dilindungi Undang-Undang.
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
           <span style="font-size: 11px; opacity: 0.7;">Operasional Cloud G-Suite</span>
@@ -3549,7 +3548,7 @@ export function getJavascriptHtmlTemplate(): string {
 
     // Profil, Visi, Misi, Akreditasi Dinamis
     if (document.getElementById('schoolAboutContent')) {
-      const about = currentConfig.ABOUT_CONTENT || "Sistem portal digital resmi SMP AL-HIKAM Sidoarjo. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.";
+      const about = currentConfig.ABOUT_CONTENT || "Sistem portal digital resmi AL-HIKAM SCHOOL. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.";
       document.getElementById('schoolAboutContent').innerHTML = about.split('\n\n').map(p => \`<p>\${p}</p>\`).join('');
     }
     if (document.getElementById('schoolVisi')) {
@@ -3568,10 +3567,10 @@ export function getJavascriptHtmlTemplate(): string {
 
     // Alamat, Telp, Email Dinamis
     if (document.getElementById('lokasiAddress')) {
-      document.getElementById('lokasiAddress').textContent = currentConfig.FOOTER_ADDRESS || 'Jl. Raya Candi No. 45, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271';
+      document.getElementById('lokasiAddress').textContent = currentConfig.FOOTER_ADDRESS || 'Jl. Raya Sendang Mulyo, Kec. sendang Agung, Kab. Lampung tengah, Prov. Lampung';
     }
     if (document.getElementById('footerAddress')) {
-      document.getElementById('footerAddress').textContent = currentConfig.FOOTER_ADDRESS || 'Jl. Raya Candi No. 45, Candi, Sidoarjo, Jawa Timur 61271';
+      document.getElementById('footerAddress').textContent = currentConfig.FOOTER_ADDRESS || 'Jl. Raya Sendang Mulyo, Kec. sendang Agung, Kab. Lampung tengah, Prov. Lampung';
     }
     if (document.getElementById('lokasiPhone')) {
       document.getElementById('lokasiPhone').textContent = currentConfig.FOOTER_PHONE || '(031) 892-1234';
@@ -4010,7 +4009,7 @@ export function getJavascriptHtmlTemplate(): string {
     if (modal && img && caption && sourceImg) {
       modal.style.display = 'block';
       img.src = sourceImg.src;
-      caption.textContent = sourceImg.alt || "Galeri Foto SMP AL-HIKAM Sidoarjo";
+      caption.textContent = sourceImg.alt || "Galeri Foto AL-HIKAM SCHOOL";
     }
   }
 
@@ -4448,7 +4447,7 @@ export function getJavascriptHtmlTemplate(): string {
     document.getElementById('profSchoolSubtitle').value = currentConfig.SCHOOL_SUBTITLE || "";
     document.getElementById('profAccreditationRating').value = currentConfig.ACCREDITATION_RATING || "Akreditasi A";
     document.getElementById('profAccreditationDetail').value = currentConfig.ACCREDITATION_DETAIL || "Sangat Memuaskan (BAN-S/M)";
-    document.getElementById('profAboutContent').value = currentConfig.ABOUT_CONTENT || "Sistem portal digital resmi SMP AL-HIKAM Sidoarjo. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.";
+    document.getElementById('profAboutContent').value = currentConfig.ABOUT_CONTENT || "Sistem portal digital resmi AL-HIKAM SCHOOL. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.";
     document.getElementById('profVisi').value = currentConfig.VISI || '"Unggul dalam Prestasi, Terdepan dalam Teknologi, Berlandaskan Iman dan Taqwa."';
     document.getElementById('profMisi').value = currentConfig.MISI || "- Menyelenggarakan pendidikan holistik berbasis nilai islam.\\n- Meningkatkan literasi dan kemampuan teknologi informasi.\\n- Membina kemandirian dan jiwa kepemimpinan siswa.";
     document.getElementById('profWebsite').value = currentConfig.WEBSITE || "";
@@ -4456,7 +4455,7 @@ export function getJavascriptHtmlTemplate(): string {
     document.getElementById('profWhatsapp').value = currentConfig.WHATSAPP || "";
     document.getElementById('profInstagram').value = currentConfig.INSTAGRAM || "";
     document.getElementById('profYoutube').value = currentConfig.YOUTUBE || "";
-    document.getElementById('profFooterAddress').value = currentConfig.FOOTER_ADDRESS || "Jl. Raya Candi No. 45, Kecamatan Candi, Sidoarjo, Jawa Timur 61271";
+    document.getElementById('profFooterAddress').value = currentConfig.FOOTER_ADDRESS || "Jl. Raya Sendang Mulyo, Kec. sendang Agung, Kab. Lampung tengah, Prov. Lampung";
     document.getElementById('profFooterPhone').value = currentConfig.FOOTER_PHONE || "(031) 892-1234";
     document.getElementById('profFooterEmail').value = currentConfig.FOOTER_EMAIL || "info@smpalhikam.sch.id";
     document.getElementById('profFooterVersion').value = currentConfig.FOOTER_VERSION || "Portal v2.2.0";
@@ -4578,19 +4577,19 @@ export function getJavascriptHtmlTemplate(): string {
 
   function getMockConfig() {
     return {
-      SCHOOL_NAME: "SMP AL-HIKAM",
+      SCHOOL_NAME: "AL-HIKAM SCHOOL",
       SCHOOL_SUBTITLE: "Portal Digital & Website Resmi Sekolah",
       WEBSITE: "https://sekolahkita.sch.id",
       EMAIL: "mailto:info@smpalhikam.sch.id",
       WHATSAPP: "https://wa.me/6281234567890",
       INSTAGRAM: "https://instagram.com/smpalhikam_id",
       YOUTUBE: "https://youtube.com/c/smpalhikam_yt",
-      ABOUT_CONTENT: "Sistem portal digital resmi SMP AL-HIKAM Sidoarjo. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.\\n\\nDengan komitmen mutu kependidikan terakreditasi BAN-S/M, kami mendidik santri-siswa yang berakhlak mulia, cakap teknologi, dan berprestasi unggul di era global.",
+      ABOUT_CONTENT: "Sistem portal digital resmi AL-HIKAM SCHOOL. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.\\n\\nDengan komitmen mutu kependidikan terakreditasi BAN-S/M, kami mendidik santri-siswa yang berakhlak mulia, cakap teknologi, dan berprestasi unggul di era global.",
       VISI: '"Unggul dalam Prestasi, Terdepan dalam Teknologi, Berlandaskan Iman dan Taqwa."',
       MISI: "- Menyelenggarakan pendidikan holistik berbasis nilai islam.\\n- Meningkatkan literasi dan kemampuan teknologi informasi.\\n- Membina kemandirian dan jiwa kepemimpinan siswa.",
       ACCREDITATION_RATING: "Akreditasi A",
       ACCREDITATION_DETAIL: "Sangat Memuaskan (BAN-S/M)",
-      FOOTER_ADDRESS: "Jl. Raya Candi No. 45, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271",
+      FOOTER_ADDRESS: "Jl. Raya Sendang Mulyo, Kec. sendang Agung, Kab. Lampung tengah, Prov. Lampung",
       FOOTER_PHONE: "(031) 892-1234",
       FOOTER_EMAIL: "info@smpalhikam.sch.id",
       FOOTER_VERSION: "Portal v2.2.0"
@@ -4629,7 +4628,7 @@ export function getJavascriptHtmlTemplate(): string {
       ],
       faqs: [
         { question: "Bagaimana cara mendaftar menjadi siswa baru?", answer: "Pendaftaran siswa baru (PPDB) dapat diakses secara online melalui portal ini pada aplikasi PPDB Online, atau datang langsung ke sekretariat pendaftaran di kantor tata usaha." },
-        { question: "Apakah ada program beasiswa bagi siswa berprestasi?", answer: "Ya, SMP AL-HIKAM Sidoarjo menyediakan beasiswa prestasi akademik, non-akademik, serta beasiswa tahfidz Al-Qur'an berupa keringanan biaya SPP bulanan." }
+        { question: "Apakah ada program beasiswa bagi siswa berprestasi?", answer: "Ya, AL-HIKAM SCHOOL menyediakan beasiswa prestasi akademik, non-akademik, serta beasiswa tahfidz Al-Qur'an berupa keringanan biaya SPP bulanan." }
       ]
     };
   }
