@@ -1283,7 +1283,7 @@ export default function PortalPreview({
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.1235489812563!2d112.7123456!3d-7.456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e12345678901%3A0x1234567890abcdef!2sCandi%2C%20Sidoarjo%20Regency%2C%20East%20Java!5e0!3m2!1sid!2sid!4v1700000000000" 
                   className="w-full h-full border-none filter contrast-110 brightness-95" 
                   loading="lazy" 
-                  title="Peta Lokasi SMP Al-Hikam Sidoarjo"
+                  title="Peta Lokasi SMP Al-Hikam Sendang Mulyo"
                 />
               </div>
               <p className="text-[11px] text-white/80 leading-relaxed flex gap-2 items-start mb-3">
