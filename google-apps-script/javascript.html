@@ -863,8 +863,12 @@
       };
       
       google.script.run
-        .withSuccessHandler(function() {
-          showToast("Perubahan " + fieldToSync + " berhasil disimpan ke cloud & Spreadsheet!", "success");
+        .withSuccessHandler(function(res) {
+          if (res && res.spreadsheetSaved === false) {
+            showToast("Simpan cloud sukses, tapi GAGAL sinkron Spreadsheet: " + res.spreadsheetError, "warning");
+          } else {
+            showToast("Perubahan " + fieldToSync + " berhasil disimpan ke cloud & Spreadsheet!", "success");
+          }
         })
         .withFailureHandler(function(err) {
           showToast("Gagal sinkronisasi cloud: " + err, "error");
@@ -894,9 +898,13 @@
         .then(res => res.json())
         .then(data => {
           if (data && data.success) {
-            showToast("Perubahan " + fieldToSync + " berhasil disimpan ke Google Spreadsheet!", "success");
+            if (data.spreadsheetSaved === false) {
+              showToast("Simpan cloud sukses, tapi GAGAL sinkron Spreadsheet: " + data.spreadsheetError, "warning");
+            } else {
+              showToast("Perubahan " + fieldToSync + " berhasil disimpan ke Google Spreadsheet!", "success");
+            }
           } else {
-            showToast("Gagal menyimpan ke Google Spreadsheet. Periksa kata sandi Anda.", "error");
+            showToast("Gagal menyimpan ke Google Spreadsheet. " + (data.error || "Periksa kata sandi Anda."), "error");
           }
         })
         .catch(err => {
