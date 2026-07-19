@@ -58,6 +58,10 @@
           currentApps = data.apps;
           currentSchoolData = data.schoolData;
           
+          if (data.spreadsheetUrl) {
+            setupSpreadsheetLink(data.spreadsheetUrl);
+          }
+          
           applyPortalData();
           hideLoadingOverlay();
         })
@@ -67,8 +71,45 @@
         })
         .getPortalData();
     } else {
-      console.log("Di luar environment GAS. Melakukan simulasi local.");
-      loadFallbackLocalData();
+      console.log("Di luar environment GAS. Mencari konfigurasi sync remote...");
+      const savedGasUrl = localStorage.getItem('gas_web_app_url');
+      if (savedGasUrl) {
+        showToast("Sinkronisasi otomatis dengan Google Spreadsheet...", "info");
+        fetch(savedGasUrl + '?action=getData')
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.config) {
+              currentConfig = data.config;
+              currentApps = data.apps;
+              currentSchoolData = data.schoolData;
+              
+              if (data.spreadsheetUrl) {
+                setupSpreadsheetLink(data.spreadsheetUrl);
+              }
+              
+              applyPortalData();
+              hideLoadingOverlay();
+              showToast("Koneksi cloud & Spreadsheet berhasil!", "success");
+            } else {
+              loadFallbackLocalData();
+            }
+          })
+          .catch(err => {
+            console.error("Gagal sinkronisasi otomatis:", err);
+            loadFallbackLocalData();
+          });
+      } else {
+        console.log("Tidak ada URL Web App GAS yang disimpan. Menggunakan data simulasi lokal.");
+        loadFallbackLocalData();
+      }
+    }
+  }
+
+  function setupSpreadsheetLink(url) {
+    const btn = document.getElementById('spreadsheetLinkBtn');
+    if (btn && url) {
+      btn.href = url;
+      btn.style.display = 'inline-flex';
     }
   }
 
@@ -665,6 +706,15 @@
   // ==========================================================================
   function openLoginModal() {
     document.getElementById('loginModal').style.display = 'flex';
+    if (typeof google === 'undefined') {
+      const gasUrlGroup = document.getElementById('gasUrlGroup');
+      if (gasUrlGroup) gasUrlGroup.style.display = 'block';
+      const urlInput = document.getElementById('gasWebAppUrl');
+      if (urlInput) urlInput.value = localStorage.getItem('gas_web_app_url') || '';
+    } else {
+      const gasUrlGroup = document.getElementById('gasUrlGroup');
+      if (gasUrlGroup) gasUrlGroup.style.display = 'none';
+    }
     document.getElementById('loginPassword').focus();
   }
 
@@ -709,17 +759,59 @@
         })
         .verifyAdminPassword(pass);
     } else {
-      // Offline mode bypass (sandi: admin)
-      if (pass === "admin") {
-        isLoggedIn = true;
-        adminPasswordInput = pass;
-        closeModal('loginModal');
-        showToast("Masuk mode simulasi offline.", "success");
-        toggleAdminLayout(true);
-        applyPortalData();
+      const webAppUrlInput = document.getElementById('gasWebAppUrl');
+      const webAppUrl = webAppUrlInput ? webAppUrlInput.value.trim() : '';
+      if (webAppUrl) {
+        showToast("Menghubungkan ke Google Apps Script Web App...", "info");
+        fetch(webAppUrl, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'text/plain'
+          },
+          body: JSON.stringify({
+            action: 'verifyPassword',
+            password: pass
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.success) {
+            isLoggedIn = true;
+            adminPasswordInput = pass;
+            localStorage.setItem('gas_web_app_url', webAppUrl);
+            closeModal('loginModal');
+            showToast("Selamat Datang! Terhubung ke Google Spreadsheet.", "success");
+            toggleAdminLayout(true);
+            
+            if (data.config) currentConfig = data.config;
+            if (data.apps) currentApps = data.apps;
+            if (data.schoolData) currentSchoolData = data.schoolData;
+            if (data.spreadsheetUrl) setupSpreadsheetLink(data.spreadsheetUrl);
+            
+            applyPortalData();
+          } else {
+            errorAlert.textContent = "Sandi salah pada Google Web App.";
+            errorAlert.style.display = 'block';
+          }
+        })
+        .catch(err => {
+          errorAlert.textContent = "Koneksi Web App gagal: " + err;
+          errorAlert.style.display = 'block';
+        });
       } else {
-        errorAlert.textContent = "Sandi offline salah.";
-        errorAlert.style.display = 'block';
+        // Offline mode bypass (sandi: admin)
+        if (pass === "admin") {
+          isLoggedIn = true;
+          adminPasswordInput = pass;
+          closeModal('loginModal');
+          showToast("Masuk mode simulasi offline.", "success");
+          toggleAdminLayout(true);
+          applyPortalData();
+        } else {
+          errorAlert.textContent = "Sandi offline salah.";
+          errorAlert.style.display = 'block';
+        }
       }
     }
   }
@@ -750,6 +842,12 @@
       document.getElementById('addFaqBtn').style.display = active ? 'inline-flex' : 'none';
     }
     
+    // Sembunyikan tombol spreadsheet jika keluar admin
+    const btn = document.getElementById('spreadsheetLinkBtn');
+    if (btn && !active) {
+      btn.style.display = 'none';
+    }
+    
     // Beri margin top ke header jika admin bar aktif
     document.getElementById('mainHeader').style.top = active ? '48px' : '0';
   }
@@ -766,18 +864,51 @@
       
       google.script.run
         .withSuccessHandler(function() {
-          showToast("Perubahan " + fieldToSync + " berhasil disimpan ke cloud!", "success");
+          showToast("Perubahan " + fieldToSync + " berhasil disimpan ke cloud & Spreadsheet!", "success");
         })
         .withFailureHandler(function(err) {
           showToast("Gagal sinkronisasi cloud: " + err, "error");
         })
         .updatePortalData(adminPasswordInput, payload);
     } else {
-      // Offline Local Storage sync
-      localStorage.setItem('sim_portal_config', JSON.stringify(currentConfig));
-      localStorage.setItem('sim_portal_apps', JSON.stringify(currentApps));
-      localStorage.setItem('sim_portal_school_data', JSON.stringify(currentSchoolData));
-      showToast("Tersimpan secara lokal (Simulasi)!");
+      const webAppUrl = localStorage.getItem('gas_web_app_url');
+      if (webAppUrl) {
+        showToast("Sinkronisasi perubahan " + fieldToSync + " ke Google Spreadsheet...", "info");
+        const payload = {
+          action: 'updateData',
+          password: adminPasswordInput,
+          payload: {
+            config: currentConfig,
+            apps: currentApps,
+            schoolData: currentSchoolData
+          }
+        };
+        fetch(webAppUrl, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'text/plain'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.success) {
+            showToast("Perubahan " + fieldToSync + " berhasil disimpan ke Google Spreadsheet!", "success");
+          } else {
+            showToast("Gagal menyimpan ke Google Spreadsheet. Periksa kata sandi Anda.", "error");
+          }
+        })
+        .catch(err => {
+          showToast("Gagal menghubungi Google Web App: " + err, "error");
+        });
+      } else {
+        // Offline Local Storage sync
+        localStorage.setItem('sim_portal_config', JSON.stringify(currentConfig));
+        localStorage.setItem('sim_portal_apps', JSON.stringify(currentApps));
+        localStorage.setItem('sim_portal_school_data', JSON.stringify(currentSchoolData));
+        showToast("Tersimpan secara lokal (Simulasi)!");
+      }
     }
   }
 
