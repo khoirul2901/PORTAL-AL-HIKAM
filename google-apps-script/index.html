@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO & Meta Tags Utama -->
+  <title id="metaTitle">SMP AL-HIKAM - Portal Digital & Website Resmi</title>
+  <meta name="description" content="Selamat datang di Portal Digital & Website Resmi SMP AL-HIKAM. Pusat layanan akademik, administrasi, dan informasi digital terintegrasi untuk guru, siswa, dan wali murid.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sekolahkita.sch.id">
+  <meta name="theme-color" content="#f0f4f9">
+  <link rel="icon" type="image/png" href="https://www.gstatic.com/images/branding/product/1x/scis_512dp.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SMP AL-HIKAM - Portal Digital & Website Resmi">
+  <meta property="og:description" content="Pusat layanan akademik, administrasi, dan informasi digital terintegrasi SMP AL-HIKAM Sidoarjo.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1200">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="SMP AL-HIKAM - Portal Digital & Website Resmi">
+  <meta property="twitter:description" content="Pusat layanan akademik, administrasi, dan informasi digital terintegrasi SMP AL-HIKAM Sidoarjo.">
+  <meta property="twitter:image" content="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1200">
+
+  <!-- JSON-LD Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "School",
+    "name": "SMP AL-HIKAM Sidoarjo",
+    "url": "https://sekolahkita.sch.id",
+    "logo": "https://www.gstatic.com/images/branding/product/1x/scis_512dp.png",
+    "image": "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1200",
+    "description": "Lembaga pendidikan menengah pertama unggulan yang mengintegrasikan seluruh sistem informasi akademik dan administrasi dalam satu platform digital.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Raya Candi No. 45, Kecamatan Candi",
+      "addressLocality": "Sidoarjo",
+      "addressRegion": "Jawa Timur",
+      "postalCode": "61271",
+      "addressCountry": "ID"
+    },
+    "telephone": "(031) 892-1234",
+    "email": "info@smpalhikam.sch.id",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "07:00",
+      "closes": "15:00"
+    }
+  }
+  </script>
+
+  <!-- 1. INCLUDE ASSET EKSTERNAL (FONTS & CDN) -->
+  <?!= include('include'); ?>
+
+  <!-- 2. INCLUDE LEMBAR GAYA CSS UTAMA -->
+  <?!= include('css'); ?>
+</head>
+<body>
+
+  <!-- LOADING SCREEN LAYER -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Menghubungkan ke Google Workspace Cloud...</p>
+  </div>
+
+  <!-- ADMIN CONTROL BAR (IF LOGGED IN) -->
+  <div id="adminBar" class="admin-bar">
+    <div class="admin-bar-left">
+      <span class="pulse-dot"></span>
+      <span>MODE ADMIN AKTIF — Kelola Seluruh Data & Tampilan Portal</span>
+    </div>
+    <div class="admin-bar-right">
+      <button class="admin-bar-btn" onclick="openProfileModal()">
+        <span class="material-symbols-rounded">settings</span> Profil & Tautan
+      </button>
+      <button class="admin-bar-btn" onclick="openAppModal()">
+        <span class="material-symbols-rounded">add_box</span> Tambah Aplikasi
+      </button>
+      <button class="admin-bar-btn" onclick="openPasswordModal()">
+        <span class="material-symbols-rounded">lock_reset</span> Ganti Sandi
+      </button>
+      <button class="admin-bar-btn logout" onclick="logoutAdmin()">
+        <span class="material-symbols-rounded">logout</span> Keluar Admin
+      </button>
+    </div>
+  </div>
+
+  <!-- HEADER UTAMA (STICKY & RESPONSIVE) -->
+  <header role="banner" id="mainHeader">
+    <div class="container header-content">
+      
+      <!-- Sisi Kiri: Identitas Sekolah -->
+      <a href="#heroSection" class="logo-area" style="text-decoration: none; color: inherit;">
+        <div id="schoolLogoCircle" class="logo-circle" aria-hidden="true">A</div>
+        <div class="school-meta">
+          <div id="schoolNameHeader" class="school-name">SMP AL-HIKAM</div>
+          <span id="schoolSubtitleHeader" class="system-title">Portal Akademik & Layanan Digital</span>
+        </div>
+      </a>
+
+      <!-- Sisi Kanan: Jam Realtime, Kontrol Tema & Login -->
+      <div class="header-right">
+        <!-- Widget Jam Indonesia -->
+        <div id="clockDisplay" class="time-widget" aria-live="polite">
+          Memuat tanggal & waktu...
+        </div>
+
+        <!-- Tombol Terang / Gelap -->
+        <div class="theme-controls" role="group" aria-label="Pengaturan Tema Tampilan">
+          <button id="lightThemeBtn" class="theme-btn active" title="Mode Terang" aria-label="Mode Terang">
+            <span class="material-symbols-rounded">light_mode</span>
+          </button>
+          <button id="darkThemeBtn" class="theme-btn" title="Mode Gelap" aria-label="Mode Gelap">
+            <span class="material-symbols-rounded">dark_mode</span>
+          </button>
+        </div>
+
+        <!-- Tombol Login Admin -->
+        <button id="loginBtn" class="login-action-btn" onclick="openLoginModal()" title="Login Administrator">
+          <span class="material-symbols-rounded">lock</span>
+          <span>Admin Login</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- KONTEN UTAMA HALAMAN -->
+  <main style="flex: 1;">
+    
+    <!-- 1. HERO SECTION -->
+    <section id="heroSection" class="hero-section animate-slideup" aria-labelledby="welcome-heading">
+      <div class="container hero-content">
+        <div class="hero-badge">
+          <span class="material-symbols-rounded" style="font-size: 16px;">verified_user</span> Portal Resmi Terverifikasi
+        </div>
+        <h1 id="welcome-heading" class="hero-title">SMP AL-HIKAM <br><span>Portal Digital Sekolah</span></h1>
+        
+        <p class="hero-subtitle">
+          Selamat datang di platform integrasi digital SMP AL-HIKAM. Portal ini memudahkan guru, tenaga kependidikan, siswa, orang tua, dan masyarakat dalam mengakses berbagai layanan akademik, keuangan, dan administrasi sekolah secara cepat, aman, dan efisien dari mana saja.
+        </p>
+
+        <p class="hero-subtitle-sub">
+          Dirancang khusus untuk menghadirkan ekosistem pembelajaran modern abad ke-21 berlandaskan iman, taqwa, dan keunggulan teknologi digital.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="hero-actions">
+          <a href="#appsSection" class="hero-btn primary-btn" onclick="smoothScroll(event, 'appsSection')">
+            <span class="material-symbols-rounded">explore</span> Jelajahi Portal
+          </a>
+          <a href="#profilSection" class="hero-btn secondary-btn" onclick="smoothScroll(event, 'profilSection')">
+            <span class="material-symbols-rounded">school</span> Tentang Sekolah
+          </a>
+        </div>
+
+        <!-- Kotak Pencarian Aplikasi (Real-time Filter) -->
+        <div class="search-wrapper" role="search">
+          <input type="text" id="searchInput" class="search-box" placeholder="Cari aplikasi atau layanan..." aria-label="Cari aplikasi atau layanan sekolah">
+          <span class="material-symbols-rounded search-icon">search</span>
+          <span id="clearSearch" class="material-symbols-rounded clear-icon" title="Bersihkan pencarian">close</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DESKRIPSI PORTAL -->
+    <section id="deskripsiSection" class="portal-desc-section animate-slideup">
+      <div class="container">
+        <div class="section-title-wrapper text-center">
+          <span class="section-badge">Platform Terpadu</span>
+          <h2 class="section-main-title">Kenapa Menggunakan Portal Digital?</h2>
+          <p class="section-subtitle-text">Menghadirkan efisiensi total dalam manajemen sekolah melalui teknologi modern.</p>
+        </div>
+
+        <div class="desc-grid">
+          <div class="desc-card hover-lift">
+            <div class="desc-icon-box" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;">
+              <span class="material-symbols-rounded">grid_view</span>
+            </div>
+            <h3>Satu Pintu Layanan</h3>
+            <p>Akses semua sistem administrasi, kearsipan, perpustakaan, absensi, hingga keuangan dalam satu dasbor pintar terpadu.</p>
+          </div>
+
+          <div class="desc-card hover-lift">
+            <div class="desc-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+              <span class="material-symbols-rounded">cloud_done</span>
+            </div>
+            <h3>Keandalan Cloud GCP</h3>
+            <p>Terintegrasi langsung dengan ekosistem Google Workspace for Education yang stabil, cepat, dan aman untuk data sekolah.</p>
+          </div>
+
+          <div class="desc-card hover-lift">
+            <div class="desc-icon-box" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+              <span class="material-symbols-rounded">flash_on</span>
+            </div>
+            <h3>Efisiensi Operasional</h3>
+            <p>Memangkas birokrasi manual dengan sistem digitalisasi surat menyurat, pengumuman instan, serta pelaporan real-time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK ACCESS SECTION (TAUTAN CEPAT - PERTAHANKAN STRUKTUR) -->
+    <section class="quick-access-section animate-slideup">
+      <div class="container">
+        <div class="quick-access-card">
+          <div class="quick-access-wrapper">
+            <div class="quick-label">
+              <span class="material-symbols-rounded">link</span> Tautan Cepat:
+            </div>
+            <div id="quickLinksContainer" class="quick-links">
+              <!-- Diisi secara dinamis dari config -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DASHBOARD APLIKASI (LAUNCHER GRID) -->
+    <section id="appsSection" class="launcher-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrapper">
+            <span class="section-badge">Pusat Aplikasi</span>
+            <h2 class="section-main-title flex-title">
+              <span class="material-symbols-rounded" style="font-size: 28px;">apps</span> Dashboard Aplikasi Sekolah
+            </h2>
+          </div>
+          <button id="addNewAppBtnHeader" class="admin-add-section-btn" onclick="openAppModal()" style="display:none;">
+            <span class="material-symbols-rounded">add</span> Tambah Aplikasi
+          </button>
+        </div>
+
+        <!-- Grid tempat menampung kartu aplikasi secara dinamis -->
+        <div id="appsGrid" class="apps-grid">
+          <!-- Kartu-kartu aplikasi akan di-render di sini secara dinamis menggunakan JS looping -->
+        </div>
+
+        <!-- Placeholder pencarian tidak ditemukan -->
+        <div id="noResults" class="no-results" role="alert" aria-live="assertive">
+          <span class="material-symbols-rounded no-results-icon">search_off</span>
+          <h4>Layanan Tidak Ditemukan</h4>
+          <p>
+            Maaf, tidak ada aplikasi sekolah yang cocok dengan kata kunci pencarian Anda. Silakan coba kata kunci lain.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. STATISTIK SEKOLAH -->
+    <section id="statistikSection" class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stats-card">
+            <div class="stats-icon-box">
+              <span class="material-symbols-rounded">groups</span>
+            </div>
+            <div class="stats-number">650+</div>
+            <div class="stats-label">Siswa Aktif</div>
+          </div>
+
+          <div class="stats-card">
+            <div class="stats-icon-box">
+              <span class="material-symbols-rounded">co_present</span>
+            </div>
+            <div class="stats-number">45</div>
+            <div class="stats-label">Guru & Staf</div>
+          </div>
+
+          <div class="stats-card">
+            <div class="stats-icon-box">
+              <span class="material-symbols-rounded">meeting_room</span>
+            </div>
+            <div class="stats-number">18</div>
+            <div class="stats-label">Rombongan Belajar</div>
+          </div>
+
+          <div class="stats-card">
+            <div class="stats-icon-box">
+              <span class="material-symbols-rounded">integration_instructions</span>
+            </div>
+            <div class="stats-number">12+</div>
+            <div class="stats-label">Aplikasi Terintegrasi</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. BERITA & PENGUMUMAN (SECTION UTAMA) -->
+    <section id="beritaSection" class="berita-section">
+      <div class="container">
+        <div class="info-grid">
+          
+          <!-- Kolom Kiri: Tab Pengumuman & Berita -->
+          <div class="info-card">
+            <div class="tabs-header" role="tablist">
+              <div style="display: flex; gap: 20px;">
+                <h3 class="tab-title active" data-tab="announcementsTab" role="tab" aria-selected="true" aria-controls="announcementsTab">
+                  Pengumuman Terbaru
+                </h3>
+                <h3 class="tab-title" data-tab="newsTab" role="tab" aria-selected="false" aria-controls="newsTab">
+                  Berita & Prestasi
+                </h3>
+              </div>
+              <button id="addInfoBtn" class="admin-add-section-btn text-xs" onclick="handleAddInfoClick()" style="display:none;">
+                <span class="material-symbols-rounded" style="font-size:14px;">add</span> Tambah Data
+              </button>
+            </div>
+
+            <!-- Isi Tab Pengumuman -->
+            <div id="announcementsTab" class="tab-content active" role="tabpanel">
+              <div id="announcementsList" class="announcements-flex-list">
+                <div style="text-align: center; color: var(--text-muted); padding: 24px;">Memuat pengumuman...</div>
+              </div>
+            </div>
+
+            <!-- Isi Tab Berita -->
+            <div id="newsTab" class="tab-content" role="tabpanel">
+              <div id="newsList" class="news-container">
+                <div style="text-align: center; color: var(--text-muted); padding: 24px; grid-column: 1/-1;">Memuat berita...</div>
+              </div>
+              <div class="text-center" style="margin-top: 24px;">
+                <button class="view-all-btn" onclick="showAllNewsModal()">
+                  <span>Lihat Semua Berita</span>
+                  <span class="material-symbols-rounded">arrow_right_alt</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. AGENDA SEKOLAH (SECTION UTAMA) -->
+    <section id="agendaSection" class="agenda-section">
+      <div class="container">
+        <div class="agenda-card-full">
+          <div class="section-header" style="margin-bottom: 24px;">
+            <div class="section-title-wrapper">
+              <span class="section-badge">Kalender Pendidikan</span>
+              <h2 class="section-main-title flex-title">
+                <span class="material-symbols-rounded">calendar_month</span> Agenda Terdekat Sekolah
+              </h2>
+            </div>
+            <button id="addAgendaBtnHeader" class="admin-add-section-btn text-xs" onclick="openAgendaModal()" style="display:none;">
+              <span class="material-symbols-rounded" style="font-size:14px;">add</span> Tambah Agenda
+            </button>
+          </div>
+          
+          <div id="agendaList" class="agenda-list-grid">
+            <div style="text-align: center; color: var(--text-muted); padding: 40px; grid-column: 1/-1;">Memuat agenda kegiatan...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PROFIL SEKOLAH (SEO FRIENDLY) -->
+    <section id="profilSection" class="profil-section">
+      <div class="container">
+        <div class="section-title-wrapper text-center">
+          <span class="section-badge">Profil Lembaga</span>
+          <h2 class="section-main-title">Mengenal SMP AL-HIKAM</h2>
+          <p class="section-subtitle-text">Lembaga pendidikan unggulan berbasis teknologi dan pembentukan karakter mulia.</p>
+        </div>
+
+        <div class="profil-grid">
+          <div class="profil-main-card">
+            <h3>Tentang Kami</h3>
+            <div id="schoolAboutContent">
+              <p>SMP AL-HIKAM Sidoarjo adalah sekolah menengah pertama yang berdedikasi tinggi melahirkan generasi rabbani yang cerdas secara akademik, mantap dalam spiritual, dan tangkas dalam menguasai teknologi informasi di era digital.</p>
+              <p>Dengan menerapkan kurikulum nasional yang dipadukan dengan kurikulum kepesantrenan dan literasi digital, kami berkomitmen membentuk siswa yang tidak hanya unggul dalam prestasi intelektual namun juga memiliki karakter akhlakul karimah yang kokoh.</p>
+            </div>
+            
+            <div class="visimisi-box">
+              <div class="visimisi-item">
+                <h4>Visi Sekolah</h4>
+                <p id="schoolVisi">"Unggul dalam Prestasi, Terdepan dalam Teknologi, Berlandaskan Iman dan Taqwa."</p>
+              </div>
+              <div class="visimisi-item">
+                <h4>Misi Utama</h4>
+                <ul id="schoolMisiList">
+                  <li>Menyelenggarakan pembelajaran berkualitas berbasis ICT (Information and Communication Technology).</li>
+                  <li>Membiasakan nilai-nilai islami dan ibadah harian secara istiqomah.</li>
+                  <li>Mengembangkan minat bakat siswa di bidang riset, bahasa, olahraga, dan seni.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="profil-sidebar">
+            <div class="sidebar-info-card">
+              <div class="accreditation-badge">
+                <span class="material-symbols-rounded">workspace_premium</span>
+                <div>
+                  <strong id="schoolAccreditation">Akreditasi A</strong>
+                  <span id="schoolAccreditationDetail">Sangat Memuaskan (BAN-S/M)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-programs-card">
+              <div class="section-header" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <h3>Program Unggulan</h3>
+                <button id="addProgramBtn" class="admin-add-section-btn text-xs" onclick="openProgramModal()" style="display:none; padding: 2px 8px; border-radius: 6px;">
+                  <span class="material-symbols-rounded" style="font-size:12px;">add</span> Tambah
+                </button>
+              </div>
+              <ul id="schoolProgramList" class="program-list">
+                <!-- Dinamis oleh JS -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. GALERI SEKOLAH -->
+    <section id="galeriSection" class="galeri-section">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div class="section-title-wrapper">
+            <span class="section-badge">Dokumentasi</span>
+            <h2 class="section-main-title">Galeri Kegiatan Sekolah</h2>
+          </div>
+          <button id="addGalleryBtn" class="admin-add-section-btn text-xs" onclick="openGalleryModal()" style="display:none; padding: 4px 12px; border-radius: 8px;">
+            <span class="material-symbols-rounded" style="font-size:14px;">add</span> Tambah Foto
+          </button>
+        </div>
+        <p class="section-subtitle-text" style="margin-top: -12px; margin-bottom: 24px;">Dokumentasi momen-momen terbaik, fasilitas modern, dan aktivitas santri SMP AL-HIKAM.</p>
+
+        <div id="schoolGalleryGrid" class="galeri-grid">
+          <!-- Dinamis oleh JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. FAQ SECTION (ACCORDION ACCESSIBLE) -->
+    <section id="faqSection" class="faq-section">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div class="section-title-wrapper">
+            <span class="section-badge">Tanya Jawab</span>
+            <h2 class="section-main-title">Pertanyaan Sering Diajukan (FAQ)</h2>
+          </div>
+          <button id="addFaqBtn" class="admin-add-section-btn text-xs" onclick="openFaqModal()" style="display:none; padding: 4px 12px; border-radius: 8px;">
+            <span class="material-symbols-rounded" style="font-size:14px;">add</span> Tambah FAQ
+          </button>
+        </div>
+        <p class="section-subtitle-text" style="margin-top: -12px; margin-bottom: 24px;">Informasi cepat mengenai pengoperasian portal dan layanan digital sekolah.</p>
+
+        <div id="schoolFaqAccordion" class="faq-accordion-container">
+          <!-- Dinamis oleh JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. GOOGLE MAPS & DETAIL LOKASI -->
+    <section id="lokasiSection" class="lokasi-section">
+      <div class="container">
+        <div class="section-title-wrapper text-center">
+          <span class="section-badge">Lokasi Kami</span>
+          <h2 class="section-main-title">Alamat & Jam Operasional</h2>
+          <p class="section-subtitle-text">Kunjungi kampus kami atau hubungi kami pada jam pelayanan kerja.</p>
+        </div>
+
+        <div class="lokasi-grid">
+          <div class="lokasi-info-card hover-lift">
+            <div class="contact-card-header">
+              <span class="material-symbols-rounded">contact_mail</span>
+              <h3>Kontak Informasi</h3>
+            </div>
+            
+            <div class="lokasi-detail-item">
+              <span class="material-symbols-rounded" style="color: #ef4444;">location_on</span>
+              <div>
+                <strong>Alamat Sekolah</strong>
+                <span id="lokasiAddress">Jl. Raya Candi No. 45, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271</span>
+              </div>
+            </div>
+
+            <div class="lokasi-detail-item">
+              <span class="material-symbols-rounded" style="color: #f59e0b;">schedule</span>
+              <div>
+                <strong>Jam Operasional Kantor</strong>
+                <span>Senin - Jumat | 07:00 - 15:00 WIB</span>
+              </div>
+            </div>
+
+            <div class="lokasi-detail-item">
+              <span class="material-symbols-rounded" style="color: #3b82f6;">call</span>
+              <div>
+                <strong>Nomor Telepon</strong>
+                <span id="lokasiPhone">(031) 892-1234</span>
+              </div>
+            </div>
+
+            <div class="lokasi-detail-item">
+              <span class="material-symbols-rounded" style="color: #10b981;">mail</span>
+              <div>
+                <strong>Email Resmi</strong>
+                <span id="lokasiEmail">info@smpalhikam.sch.id</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="maps-iframe-container hover-lift">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.1235489812563!2d112.7123456!3d-7.456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e12345678901%3A0x1234567890abcdef!2sCandi%2C%20Sidoarjo%20Regency%2C%20East%20Java!5e0!3m2!1sid!2sid!4v1700000000000" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Peta Lokasi Kampus SMP AL-HIKAM Sidoarjo">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER HALAMAN (RESPONSIVE & BRANDED) -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Sisi Kiri: Deskripsi & Hak Cipta -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div id="footerLogoCircle" class="logo-circle" style="width: 38px; height: 38px; font-size: 20px; border-radius: 8px;" aria-hidden="true">A</div>
+            <span id="footerSchoolName" class="footer-logo-text">SMP AL-HIKAM</span>
+          </div>
+          <p class="footer-desc">
+            Sistem portal digital resmi SMP AL-HIKAM Sidoarjo. Menghubungkan seluruh layanan sekolah dalam satu pintu pintar berbasis komputasi awan.
+          </p>
+          
+          <div class="footer-legal-links">
+            <a href="#" onclick="alert('Kebijakan Privasi Portal SMP AL-HIKAM: Seluruh data yang disimpan melalui PropertiesService dienkripsi dan hanya diakses oleh administrator resmi sekolah.')">Privacy Policy</a>
+            <span class="divider">•</span>
+            <a href="#" onclick="alert('Syarat & Ketentuan Penggunaan: Layanan portal ini disediakan khusus untuk penunjang akademik civitas akademika SMP AL-HIKAM.')">Terms of Service</a>
+          </div>
+        </div>
+
+        <!-- Sisi Tengah: Quick Links Navigasi Website -->
+        <div class="footer-nav">
+          <h4 class="footer-title">Navigasi Portal</h4>
+          <ul class="footer-menu">
+            <li><a href="#heroSection" onclick="smoothScroll(event, 'heroSection')">Halaman Depan</a></li>
+            <li><a href="#appsSection" onclick="smoothScroll(event, 'appsSection')">Dashboard Aplikasi</a></li>
+            <li><a href="#profilSection" onclick="smoothScroll(event, 'profilSection')">Profil SMP AL-HIKAM</a></li>
+            <li><a href="#beritaSection" onclick="smoothScroll(event, 'beritaSection')">Berita & Kegiatan</a></li>
+            <li><a href="#faqSection" onclick="smoothScroll(event, 'faqSection')">Pertanyaan (FAQ)</a></li>
+            <li><a href="#lokasiSection" onclick="smoothScroll(event, 'lokasiSection')">Alamat & Lokasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Sisi Kanan: Detail Kontak & Info Lokasi -->
+        <div class="footer-contact">
+          <div class="contact-col">
+            <h4 class="footer-title">Hubungi Kami</h4>
+            <div class="contact-item">
+              <span class="material-symbols-rounded">location_on</span>
+              <span id="footerAddress">Jl. Raya Candi No. 45, Candi, Sidoarjo, Jawa Timur 61271</span>
+            </div>
+            <div class="contact-item">
+              <span class="material-symbols-rounded">call</span>
+              <span id="footerPhone">(031) 892-1234</span>
+            </div>
+            <div class="contact-item">
+              <span class="material-symbols-rounded">mail</span>
+              <span id="footerEmail">info@smpalhikam.sch.id</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Baris Bawah: Hak Cipta & Info Teknis -->
+      <div class="footer-bottom">
+        <div id="footerCopyright">
+          &copy; 2026 SMP AL-HIKAM Sidoarjo. Hak Cipta Dilindungi Undang-Undang.
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 11px; opacity: 0.7;">Operasional Cloud G-Suite</span>
+          <span class="version-tag" id="footerVersionTag" onclick="handleFooterVersionClick()" style="cursor:pointer;">Portal v2.2.0</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL POPUPS FOR ADMIN DASHBOARD & OTHER FUNCTIONS
+       ========================================================================== -->
+
+  <!-- LIGHTBOX GALLERY POPUP -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImage" class="lightbox-content" src="" alt="Tampilan Galeri Diperbesar">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+
+  <!-- ALL NEWS MODAL POPUP -->
+  <div id="allNewsModal" class="modal-overlay">
+    <div class="modal-card modal-large">
+      <button class="modal-close" onclick="closeModal('allNewsModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title">Seluruh Berita & Kegiatan</h3>
+      <p class="modal-subtitle" style="margin-bottom: 20px;">Menampilkan semua liputan kegiatan dan rilis pers resmi sekolah</p>
+      
+      <div id="allNewsListContainer" class="news-container grid-2">
+        <!-- Diisi salinan berita dinamis oleh JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. LOGIN MODAL -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('loginModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <div class="modal-header-icon" style="background: rgba(99, 102, 241, 0.15); color: #6366f1;">
+        <span class="material-symbols-rounded">security</span>
+      </div>
+      <h3 class="modal-title">Login Administrator</h3>
+      <p class="modal-subtitle">Verifikasi akses pengelola portal sekolah</p>
+      
+      <div id="loginError" class="modal-error-alert" style="display: none;"></div>
+      
+      <form onsubmit="submitLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" id="loginUsername" required class="form-input" placeholder="Masukkan admin" value="admin">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sandi Administrator</label>
+          <input type="password" id="loginPassword" required class="form-input" placeholder="Masukkan kata sandi">
+        </div>
+        <button type="submit" class="modal-submit-btn">Masuk Ke Dashboard</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. APPLICATION MODAL -->
+  <div id="appModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('appModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="appModalTitle">Tambah Aplikasi Baru</h3>
+      <p class="modal-subtitle">Konfigurasi tautan menu aplikasi sekolah</p>
+      
+      <form onsubmit="submitAppForm(event)">
+        <input type="hidden" id="appFormIndex">
+        <div class="form-group">
+          <label class="form-label">Nama Aplikasi / Layanan</label>
+          <input type="text" id="appFormTitle" required class="form-input" placeholder="Contoh: Perpustakaan Online">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nama Ikon Material Rounded</label>
+          <input type="text" id="appFormIcon" required class="form-input" placeholder="folder, payments, school, menu_book" value="folder">
+          <span style="font-size: 10px; color: var(--text-muted); margin-top: 4px; display: block;">Masukkan kata kunci ikon dari Google Material Symbols</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Deskripsi Layanan</label>
+          <textarea id="appFormDesc" required class="form-input" rows="3" placeholder="Tulis penjelasan singkat fungsi aplikasi ini..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL / Link Tujuan Aplikasi</label>
+          <input type="text" id="appFormUrl" required class="form-input" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan Aplikasi</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. ANNOUNCEMENT MODAL -->
+  <div id="announcementModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('announcementModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="announcementModalTitle">Tambah Pengumuman</h3>
+      <p class="modal-subtitle">Tulis rilis pengumuman resmi sekolah</p>
+      
+      <form onsubmit="submitAnnouncementForm(event)">
+        <input type="hidden" id="announcementFormId">
+        <div class="form-group">
+          <label class="form-label">Judul Pengumuman</label>
+          <input type="text" id="announcementFormTitle" required class="form-input" placeholder="Contoh: Libur Hari Raya">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Kategori</label>
+            <select id="announcementFormCategory" class="form-input" onchange="autoColorBadge()">
+              <option value="Penting">Penting</option>
+              <option value="Akademik">Akademik</option>
+              <option value="Sistem">Sistem</option>
+              <option value="Umum">Umum</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Warna Tag</label>
+            <input type="color" id="announcementFormColor" class="form-input" style="height: 42px; padding: 2px;" value="#ef4444">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal Rilis</label>
+          <input type="text" id="announcementFormDate" required class="form-input" placeholder="Contoh: 05 Juli 2026">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Konten Pengumuman</label>
+          <textarea id="announcementFormContent" required class="form-input" rows="4" placeholder="Tulis pengumuman secara rinci di sini..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan Pengumuman</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. NEWS MODAL -->
+  <div id="newsModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('newsModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="newsModalTitle">Tambah Berita & Prestasi</h3>
+      <p class="modal-subtitle">Unggah kabar gembira dan prestasi sekolah</p>
+      
+      <form onsubmit="submitNewsForm(event)">
+        <input type="hidden" id="newsFormId">
+        <div class="form-group">
+          <label class="form-label">Judul Berita</label>
+          <input type="text" id="newsFormTitle" required class="form-input" placeholder="Contoh: Juara 1 Nasional Karya Ilmiah">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal Berita</label>
+          <input type="text" id="newsFormDate" required class="form-input" placeholder="Contoh: 04 Juli 2026">
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL Gambar Sampul</label>
+          <input type="text" id="newsFormImage" required class="form-input" placeholder="https://images.unsplash.com/... atau Drive">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ringkasan Berita</label>
+          <textarea id="newsFormSummary" required class="form-input" rows="3" placeholder="Tulis intisari singkat berita ini..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan Berita</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. AGENDA MODAL -->
+  <div id="agendaModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('agendaModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="agendaModalTitle">Tambah Agenda Terdekat</h3>
+      <p class="modal-subtitle">Buat agenda kegiatan sekolah terbaru</p>
+      
+      <form onsubmit="submitAgendaForm(event)">
+        <input type="hidden" id="agendaFormId">
+        <div class="form-group">
+          <label class="form-label">Nama Kegiatan / Acara</label>
+          <input type="text" id="agendaFormTitle" required class="form-input" placeholder="Contoh: Pembagian Rapor Semester">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal Pelaksanaan</label>
+          <input type="text" id="agendaFormDate" required class="form-input" placeholder="Contoh: 12 Juli 2026">
+          <span style="font-size: 10px; color: var(--text-muted); margin-top: 4px; display: block;">Gunakan format "ANGKA BULAN TAHUN", contoh: "12 Juli 2026"</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Waktu Pelaksanaan</label>
+            <input type="text" id="agendaFormTime" required class="form-input" placeholder="08:00 - 12:00">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Lokasi</label>
+            <input type="text" id="agendaFormLocation" required class="form-input" placeholder="Aula Utama">
+          </div>
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan Agenda</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. GENERAL PROFILE CONFIG MODAL -->
+  <div id="profileModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('profileModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title">Profil & Tautan Cepat</h3>
+      <p class="modal-subtitle">Konfigurasi nama sekolah, email, whatsapp, & sosmed</p>
+      
+      <form onsubmit="submitProfileForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nama Sekolah</label>
+            <input type="text" id="profSchoolName" required class="form-input" placeholder="SMA NEGERI DIGITAL">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sub-Judul</label>
+            <input type="text" id="profSchoolSubtitle" required class="form-input" placeholder="Sistem Informasi Digital">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Akreditasi Rating</label>
+            <input type="text" id="profAccreditationRating" required class="form-input" placeholder="Contoh: Akreditasi A">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Akreditasi Detail</label>
+            <input type="text" id="profAccreditationDetail" required class="form-input" placeholder="Sangat Memuaskan (BAN-S/M)">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tentang Kami / Profil Lembaga</label>
+          <textarea id="profAboutContent" required class="form-input" rows="4" placeholder="Tulis deskripsi profil sekolah..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Visi Sekolah</label>
+            <input type="text" id="profVisi" required class="form-input" placeholder="Masukkan visi sekolah">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Misi Utama (Satu per baris)</label>
+          <textarea id="profMisi" required class="form-input" rows="3" placeholder="Tuliskan misi utama..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Website Sekolah</label>
+            <input type="text" id="profWebsite" required class="form-input" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Hubungi Kami (mailto:...)</label>
+            <input type="text" id="profEmail" required class="form-input" placeholder="mailto:...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">WhatsApp Link</label>
+            <input type="text" id="profWhatsapp" required class="form-input" placeholder="https://wa.me/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Instagram Link</label>
+            <input type="text" id="profInstagram" required class="form-input" placeholder="https://instagram.com/...">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">YouTube Link</label>
+            <input type="text" id="profYoutube" required class="form-input" placeholder="https://youtube.com/...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alamat Footer / Lokasi</label>
+            <input type="text" id="profFooterAddress" required class="form-input" placeholder="Alamat lengkap">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Telepon Sekolah</label>
+            <input type="text" id="profFooterPhone" required class="form-input" placeholder="Nomor telepon">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Sekolah</label>
+            <input type="text" id="profFooterEmail" required class="form-input" placeholder="Email resmi sekolah">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Versi Sistem</label>
+            <input type="text" id="profFooterVersion" required class="form-input" placeholder="Portal v2.2.0">
+          </div>
+        </div>
+
+        <button type="submit" class="modal-submit-btn">Simpan Perubahan Tampilan</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 8. PROGRAM MODAL -->
+  <div id="programModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('programModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="programModalTitle">Program Unggulan</h3>
+      <p class="modal-subtitle">Konfigurasi program unggulan sekolah</p>
+      
+      <form onsubmit="submitProgramForm(event)">
+        <input type="hidden" id="programFormIndex">
+        <div class="form-group">
+          <label class="form-label">Nama Program</label>
+          <input type="text" id="programFormTitle" required class="form-input" placeholder="Contoh: Tahfidz Al-Qur'an">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ikon (Material Symbol)</label>
+          <input type="text" id="programFormIcon" required class="form-input" placeholder="star, school, menu_book, workspace_premium" value="star">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Deskripsi Singkat</label>
+          <textarea id="programFormDesc" required class="form-input" rows="3" placeholder="Deskripsikan program unggulan..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan Program</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 9. GALLERY MODAL -->
+  <div id="galleryModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('galleryModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="galleryModalTitle">Dokumentasi Galeri</h3>
+      <p class="modal-subtitle">Konfigurasi foto dokumentasi kegiatan</p>
+      
+      <form onsubmit="submitGalleryForm(event)">
+        <input type="hidden" id="galleryFormIndex">
+        <div class="form-group">
+          <label class="form-label">Judul Foto / Kegiatan</label>
+          <input type="text" id="galleryFormTitle" required class="form-input" placeholder="Contoh: Upacara Kemerdekaan">
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL Link Gambar</label>
+          <input type="text" id="galleryFormImage" required class="form-input" placeholder="https://images.unsplash.com/... atau link Drive">
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan Galeri</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 10. FAQ MODAL -->
+  <div id="faqModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('faqModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title" id="faqModalTitle">Isian FAQ</h3>
+      <p class="modal-subtitle">Konfigurasi pertanyaan yang sering diajukan</p>
+      
+      <form onsubmit="submitFaqForm(event)">
+        <input type="hidden" id="faqFormIndex">
+        <div class="form-group">
+          <label class="form-label">Pertanyaan</label>
+          <input type="text" id="faqFormQuestion" required class="form-input" placeholder="Contoh: Bagaimana cara mendaftar PPDB?">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jawaban</label>
+          <textarea id="faqFormAnswer" required class="form-input" rows="4" placeholder="Tulis jawaban lengkap..."></textarea>
+        </div>
+        <button type="submit" class="modal-submit-btn">Simpan FAQ</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. GANTI PASSWORD MODAL -->
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('passwordModal')">
+        <span class="material-symbols-rounded">close</span>
+      </button>
+      <h3 class="modal-title">Ganti Sandi Administrator</h3>
+      <p class="modal-subtitle">Ubah sandi untuk mengamankan akses admin panel</p>
+      
+      <div id="passwordError" class="modal-error-alert" style="display: none; background: rgba(239, 68, 68, 0.15); color: #f87171;"></div>
+      <div id="passwordSuccess" class="modal-error-alert" style="display: none; background: rgba(16, 185, 129, 0.15); color: #34d399;"></div>
+ 
+      <form onsubmit="submitPasswordForm(event)">
+        <div class="form-group">
+          <label class="form-label">Sandi Lama</label>
+          <input type="password" id="passOld" required class="form-input" placeholder="Masukkan sandi saat ini">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sandi Baru</label>
+          <input type="password" id="passNew" required class="form-input" placeholder="Sandi baru (min 4 karakter)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Konfirmasi Sandi Baru</label>
+          <input type="password" id="passConfirm" required class="form-input" placeholder="Ketik ulang sandi baru">
+        </div>
+        <button type="submit" class="modal-submit-btn">Perbarui Sandi</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- 3. INCLUDE LOGIKA JAVASCRIPT UTAMA -->
+  <?!= include('javascript'); ?>
+</body>
+</html>

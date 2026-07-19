@@ -1,0 +1,6 @@
+{
+  "name": "Portal Digital Sekolah",
+  "description": "Portal Launcher Aplikasi Sekolah berbasis Google Apps Script HTML Service yang modern, responsif, dan siap dideploy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
