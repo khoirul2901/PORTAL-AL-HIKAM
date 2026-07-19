@@ -5,6 +5,13 @@
   hingga CRUD dinamis langsung dari dashboard web app.
 -->
 <script>
+  // ==========================================================================
+  // KONFIGURASI URL DATABASE (GOOGLE APPS SCRIPT WEB APP)
+  // Tempelkan URL Web App hasil deploy Apps Script Anda di sini jika ditaruh di GitHub Pages.
+  // Contoh: const DATABASE_URL = "https://script.google.com/macros/s/.../exec";
+  // ==========================================================================
+  const DATABASE_URL = ""; 
+
   // State Utama Client-side
   let currentConfig = {};
   let currentApps = [];
@@ -72,10 +79,12 @@
         .getPortalData();
     } else {
       console.log("Di luar environment GAS. Mencari konfigurasi sync remote...");
-      const savedGasUrl = localStorage.getItem('gas_web_app_url');
-      if (savedGasUrl) {
+      // Prioritaskan DATABASE_URL yang ditulis di kode, fallback ke localStorage jika kosong
+      const activeUrl = DATABASE_URL.trim() || localStorage.getItem('gas_web_app_url') || '';
+      
+      if (activeUrl) {
         showToast("Sinkronisasi otomatis dengan Google Spreadsheet...", "info");
-        fetch(savedGasUrl + '?action=getData')
+        fetch(activeUrl + '?action=getData')
           .then(res => res.json())
           .then(data => {
             if (data && data.config) {
@@ -99,7 +108,7 @@
             loadFallbackLocalData();
           });
       } else {
-        console.log("Tidak ada URL Web App GAS yang disimpan. Menggunakan data simulasi lokal.");
+        console.log("Tidak ada URL Web App GAS yang disimpan di kode atau localStorage. Menggunakan data simulasi lokal.");
         loadFallbackLocalData();
       }
     }
@@ -759,8 +768,7 @@
         })
         .verifyAdminPassword(pass);
     } else {
-      const webAppUrlInput = document.getElementById('gasWebAppUrl');
-      const webAppUrl = webAppUrlInput ? webAppUrlInput.value.trim() : '';
+      const webAppUrl = DATABASE_URL.trim() || localStorage.getItem('gas_web_app_url') || '';
       if (webAppUrl) {
         showToast("Menghubungkan ke Google Apps Script Web App...", "info");
         fetch(webAppUrl, {
@@ -779,7 +787,9 @@
           if (data && data.success) {
             isLoggedIn = true;
             adminPasswordInput = pass;
-            localStorage.setItem('gas_web_app_url', webAppUrl);
+            if (DATABASE_URL.trim() === "") {
+              localStorage.setItem('gas_web_app_url', webAppUrl);
+            }
             closeModal('loginModal');
             showToast("Selamat Datang! Terhubung ke Google Spreadsheet.", "success");
             toggleAdminLayout(true);
@@ -875,7 +885,7 @@
         })
         .updatePortalData(adminPasswordInput, payload);
     } else {
-      const webAppUrl = localStorage.getItem('gas_web_app_url');
+      const webAppUrl = DATABASE_URL.trim() || localStorage.getItem('gas_web_app_url') || '';
       if (webAppUrl) {
         showToast("Sinkronisasi perubahan " + fieldToSync + " ke Google Spreadsheet...", "info");
         const payload = {
