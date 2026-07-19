@@ -119,8 +119,20 @@ export default function CodeExporter({ config, apps, schoolData, adminPassword }
               <li className="flex gap-3">
                 <span className="w-5 h-5 min-w-[20px] rounded-full bg-white/20 text-white font-bold flex items-center justify-center">4</span>
                 <div>
-                  <span className="font-bold block text-white">Deploy Web App</span>
-                  Klik <b>Terapkan</b> (Deploy) &rarr; <b>Penerapan baru</b> &rarr; Pilih jenis <b>Aplikasi Web</b>. Atur akses "Siapa Saja" (Anyone) lalu selesaikan rilis. Selesai!
+                  <span className="font-bold block text-white">Deploy Web App (PENTING)</span>
+                  Klik <b>Terapkan</b> (Deploy) &rarr; <b>Penerapan baru</b> &rarr; Pilih jenis <b>Aplikasi Web</b>.
+                  <div className="mt-1 bg-black/20 p-2 rounded border border-white/10 text-[11px] text-yellow-200">
+                    💡 <b>Pengaturan Wajib:</b><br />
+                    • Atur <b>Jalankan sebagai (Execute as)</b> ke: <b>Saya (Me / email Anda)</b><br />
+                    • Atur <b>Siapa yang memiliki akses (Who has access)</b> ke: <b>Siapa saja (Anyone)</b>
+                  </div>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <span className="w-5 h-5 min-w-[20px] rounded-full bg-white/20 text-white font-bold flex items-center justify-center">5</span>
+                <div>
+                  <span className="font-bold block text-white">Beri Izin Google Sheets</span>
+                  Setelah deploy, pada menu atas editor klik pilihan fungsi <code>getOrCreateSpreadsheet</code> lalu klik tombol <b>Run / Jalankan</b> sekali. Berikan izin otorisasi agar sistem bisa membuat & menulis ke Google Spreadsheet Anda!
                 </div>
               </li>
             </ol>
