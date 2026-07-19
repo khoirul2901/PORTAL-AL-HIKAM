@@ -77,7 +77,12 @@
   <div id="adminBar" class="admin-bar">
     <div class="admin-bar-left">
       <span class="pulse-dot"></span>
-      <span>MODE ADMIN AKTIF — Kelola Seluruh Data & Tampilan Portal</span>
+      <span style="font-weight: 600; display: flex; align-items: center; gap: 8px;">
+        MODE ADMIN AKTIF
+        <a id="spreadsheetLinkBtn" class="admin-bar-btn" style="display: none; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 4px 10px; font-size: 11px; text-decoration: none; color: #10b981; align-items: center; gap: 4px;" href="#" target="_blank">
+          <span class="material-symbols-rounded" style="font-size: 14px;">table_chart</span> Buka Spreadsheet Database
+        </a>
+      </span>
     </div>
     <div class="admin-bar-right">
       <button class="admin-bar-btn" onclick="openProfileModal()">
@@ -650,6 +655,18 @@
           <label class="form-label">Sandi Administrator</label>
           <input type="password" id="loginPassword" required class="form-input" placeholder="Masukkan kata sandi">
         </div>
+        
+        <!-- Field URL Web App GAS jika di luar lingkungan Google Apps Script -->
+        <div id="gasUrlGroup" class="form-group" style="display: none; border-top: 1px dashed rgba(255,255,255,0.15); padding-top: 16px; margin-top: 16px;">
+          <label class="form-label" style="color: #818cf8; display: flex; align-items: center; gap: 4px;">
+            <span class="material-symbols-rounded" style="font-size: 16px;">link</span> URL Web App Google Apps Script
+          </label>
+          <input type="text" id="gasWebAppUrl" class="form-input" placeholder="https://script.google.com/macros/s/.../exec">
+          <p style="font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 4px; line-height: 1.4;">
+            Masukkan URL Web App hasil deploy Anda agar data dapat tersimpan di Google Spreadsheet Anda dan otomatis sinkron di semua perangkat (laptop & HP).
+          </p>
+        </div>
+
         <button type="submit" class="modal-submit-btn">Masuk Ke Dashboard</button>
       </form>
     </div>
